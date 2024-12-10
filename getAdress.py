@@ -1,5 +1,9 @@
+
 import requests
 import time
+from dotenv import load_dotenv
+import os
+
 
 # Paramètres de la recherche
 location = "31.0461,34.8516"  # Coordonnées pour Israël
@@ -7,8 +11,18 @@ radius = 50000  # Rayon en mètres pour la recherche
 type_place = "restaurant"  # Type de lieu, exemple : "restaurant", "school", etc.
 max_addresses = 50  # Nombre maximum d'adresses à récupérer
 
-# API Key de Google
-api_key = 'Your_Api_Key'
+
+# Charger les variables d'environnement depuis le fichier .env
+load_dotenv()
+
+# API Key de Google depuis le fichier .env
+api_key = os.getenv('GOOGLE_MP_API_KEY')
+
+if not api_key:
+    raise ValueError("La clé API n'a pas été trouvée. Assurez-vous que .env est configuré correctement.")
+
+# Le reste de votre code reste inchangé...
+
 
 # Listes pour stocker les adresses et leurs coordonnées
 addresses = []
